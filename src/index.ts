@@ -5,7 +5,7 @@
 
 import { Engine } from "@babylonjs/core/Engines/engine";
 import { Scene } from "@babylonjs/core/scene";
-import { Vector3 } from "@babylonjs/core/Maths/math";
+import { Color3, Vector3 } from "@babylonjs/core/Maths/math";
 import { UniversalCamera } from "@babylonjs/core/Cameras/universalCamera";
 import { PointerEventTypes, PointerInfo } from "@babylonjs/core/Events/pointerEvents";
 import { WebXRManagedOutputCanvasOptions } from "@babylonjs/core/XR";
@@ -15,7 +15,7 @@ import { WebXRInputSource } from "@babylonjs/core/XR/webXRInputSource";
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
 import "@babylonjs/core/Helpers/sceneHelpers";
 import "@babylonjs/inspector"
-import { DebugLayer, HemisphericLight, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
+import { CubeTexture, DebugLayer, HemisphericLight, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
 import { Inspector } from "@babylonjs/inspector";
 
 
@@ -63,6 +63,7 @@ class Game
         // This creates and positions a first-person camera (non-mesh)
         var camera = new UniversalCamera("camera1", new Vector3(0, 1.6, 0), this.scene);
         camera.fov = 90 * Math.PI / 180;
+        camera.target = new Vector3(0.05, 1.61, -2);
 
         // This attaches the camera to the canvas
         camera.attachControl(this.canvas, true);
@@ -96,14 +97,32 @@ class Game
 
         // Add code to create your scene here
 
+        //Light
         var light = new HemisphericLight("light", new Vector3(0,1,0), this.scene);
+        light.diffuse = new Color3(1, 0.7, 0.7);
 
+        //Skybox
+        var skybox = MeshBuilder.CreateBox("sky", {size: 100}, this.scene);
+        skybox.scaling = new Vector3(100, 100, 100);
+        var skyMaterial = new StandardMaterial("sky", this.scene);
+        skyMaterial.backFaceCulling = false;
+        skyMaterial.disableLighting = true;
+        var skyTexture = new CubeTexture("textures/skybox/sky", this.scene);
+        skyTexture.coordinatesMode = Texture.SKYBOX_MODE;
+        skyMaterial.reflectionTexture = skyTexture;
+        skybox.material =  skyMaterial;
+        skybox.infiniteDistance = true;
+
+        //Ground mesh
         SceneLoader.ImportMesh("", "textures/desert_biome/", "scene.gltf", this.scene, (meshes)=>{
             meshes.forEach(mesh => {
-                mesh.scaling = new Vector3(50, 50, -50);
+                mesh.scaling = new Vector3(60, 60, -60);
                 mesh.position = new Vector3(0, 10, 0);
             })
         });
+
+        
+
 
         Inspector.Show(this.scene, {});
     }

@@ -18,11 +18,17 @@ Build URL:
 
 Third Party Assets:
 
+Sunset Photo by Rahul Pandit on Unsplash
+https://unsplash.com/photos/lightning-strike-on-the-sky-during-night-time-xRS62kXbcLc?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash
+
 "Hot Desert Biome - Terrain" (https://skfb.ly/oEZoo) by artfromheath is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 https://skfb.ly/oEZoo
 
-"Wooden Lake House" (https://skfb.ly/6qwtt) by bilgehan.korkmaz is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-https://skfb.ly/6qwtt
+"Abandoned House" (https://skfb.ly/owGxR) by Sengchor is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/owGxR 
+
+"Bone Rock Collection 1" (https://skfb.ly/oqqnL) by BigAngrySkyGames is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/oqqnL
 
 ## Rubric
 
