@@ -18,7 +18,9 @@ Build URL:
 
 Third Party Assets:
 
-Wooden Lake House 
+"Hot Desert Biome - Terrain" (https://skfb.ly/oEZoo) by artfromheath is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/oEZoo
+
 "Wooden Lake House" (https://skfb.ly/6qwtt) by bilgehan.korkmaz is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 https://skfb.ly/6qwtt
 

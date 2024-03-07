@@ -98,12 +98,12 @@ class Game
 
         var light = new HemisphericLight("light", new Vector3(0,1,0), this.scene);
 
-        var fleshCube = MeshBuilder.CreateBox("fleshCube", {size: 4}, this.scene);
-
-        var skinTexture = new Texture('textures/angy-cat.png', this.scene);
-        var skinMaterial = new StandardMaterial("skinMaterial", this.scene);
-        skinMaterial.diffuseTexture = skinTexture;
-        fleshCube.material = skinMaterial;
+        SceneLoader.ImportMesh("", "textures/desert_biome/", "scene.gltf", this.scene, (meshes)=>{
+            meshes.forEach(mesh => {
+                mesh.scaling = new Vector3(50, 50, -50);
+                mesh.position = new Vector3(0, 10, 0);
+            })
+        });
 
         Inspector.Show(this.scene, {});
     }
