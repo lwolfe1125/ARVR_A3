@@ -15,6 +15,8 @@ import { WebXRInputSource } from "@babylonjs/core/XR/webXRInputSource";
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
 import "@babylonjs/core/Helpers/sceneHelpers";
 import "@babylonjs/inspector"
+import { DebugLayer, HemisphericLight, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
+import { Inspector } from "@babylonjs/inspector";
 
 
 // Note: The structure has changed since previous assignments because we need to handle the 
@@ -94,6 +96,16 @@ class Game
 
         // Add code to create your scene here
 
+        var light = new HemisphericLight("light", new Vector3(0,1,0), this.scene);
+
+        var fleshCube = MeshBuilder.CreateBox("fleshCube", {size: 4}, this.scene);
+
+        var skinTexture = new Texture('textures/angy-cat.png', this.scene);
+        var skinMaterial = new StandardMaterial("skinMaterial", this.scene);
+        skinMaterial.diffuseTexture = skinTexture;
+        fleshCube.material = skinMaterial;
+
+        Inspector.Show(this.scene, {});
     }
 
     // Event handler for processing pointer selection events

@@ -10,13 +10,17 @@ The experience must run on the Oculus Quest, so you should be careful to only us
 
 You should fill out this information before submitting your assignment.  Make sure to document the name and source of any third party assets such as 3D models, textures, or any other content used that was not solely written by you.  Include sufficient detail for the instructor or TA to easily find them, such as asset store or download links.
 
-Name: 
+Name: Jett Wolfe
 
-Dal Email:
+Dal Email: lr296711@dal.ca
 
 Build URL:
 
 Third Party Assets:
+
+Wooden Lake House 
+"Wooden Lake House" (https://skfb.ly/6qwtt) by bilgehan.korkmaz is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/6qwtt
 
 ## Rubric
 
