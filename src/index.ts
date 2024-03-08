@@ -8,14 +8,14 @@ import { Scene } from "@babylonjs/core/scene";
 import { Color3, Vector3 } from "@babylonjs/core/Maths/math";
 import { UniversalCamera } from "@babylonjs/core/Cameras/universalCamera";
 import { PointerEventTypes, PointerInfo } from "@babylonjs/core/Events/pointerEvents";
-import { WebXRManagedOutputCanvasOptions } from "@babylonjs/core/XR";
+import { WebXRControllerComponent, WebXRManagedOutputCanvasOptions } from "@babylonjs/core/XR";
 import { WebXRInputSource } from "@babylonjs/core/XR/webXRInputSource";
 
 // Side effects
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
 import "@babylonjs/core/Helpers/sceneHelpers";
 import "@babylonjs/inspector"
-import { AssetsManager, CubeTexture, DebugLayer, HemisphericLight, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
+import { AbstractMesh, AssetsManager, CubeTexture, DebugLayer, HemisphericLight, HighlightLayer, Mesh, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
 import { Inspector } from "@babylonjs/inspector";
 
 
@@ -31,16 +31,23 @@ class Game
     private engine: Engine;
     private scene: Scene;
 
+    private highlightObject: AbstractMesh | null;
+    private highlight : HighlightLayer;
+
     constructor()
     {
         // Get the canvas element 
         this.canvas = document.getElementById("renderCanvas") as HTMLCanvasElement;
 
         // Generate the BABYLON 3D engine
-        this.engine = new Engine(this.canvas, true); 
+        this.engine = new Engine(this.canvas, true, {stencil:true}); 
 
         // Creates a basic Babylon Scene object
         this.scene = new Scene(this.engine);   
+
+        //Highlight layer & object
+        this.highlightObject = null;
+        this.highlight = new HighlightLayer("highlight", this.scene);
     }
 
     start() : void
@@ -49,6 +56,9 @@ class Game
             // Register a render loop to repeatedly render the scene
             this.engine.runRenderLoop(() => { 
                 this.scene.render();
+
+                //Constantly update highlights
+                this.update();
             });
 
             // Watch for browser/canvas resize events
@@ -125,7 +135,10 @@ class Game
             groundMesh.position = new Vector3(0, -158, 0);
             groundMesh.name = "DesertBiome";
 
-            xrHelper.teleportation.addFloorMesh(groundMesh);
+            //Adding floor mesh for teleportation
+            groundTask.loadedMeshes.forEach(mesh => {
+                xrHelper.teleportation.addFloorMesh(mesh);
+            });
         }
 
         //House mesh 
@@ -214,11 +227,7 @@ class Game
             cactusMesh.name = "cactus";
         }
 
-        assets.load();
-
-        assets.onFinish = (tasks) => {
-            Inspector.Show(this.scene, {});
-        }        
+        assets.load();  
     }
 
     // Event handler for processing pointer selection events
@@ -227,9 +236,33 @@ class Game
         switch (pointerInfo.type) {
             case PointerEventTypes.POINTERDOWN:
                 if (pointerInfo.pickInfo?.hit) {
+                    
                     console.log("selected mesh: " + pointerInfo.pickInfo.pickedMesh?.name);
+                    
+                    //If the mesh is not already the highlighted item, make it the highlighted item
+                    if(this.highlightObject != pointerInfo.pickInfo.pickedMesh) this.highlightObject = pointerInfo.pickInfo.pickedMesh; 
+
+                    //Otherwise, there should be no highlighted item
+                    else this.highlightObject = null;
                 }
                 break;
+        }
+    }
+
+    //Updating the highlights
+    private update()
+    {
+        //If an item is selected
+        if(this.highlightObject != null)
+        {
+            //remove existing highlights and add the highlighted object
+            this.highlight.removeAllMeshes();
+            this.highlight.addMesh(this.highlightObject as Mesh, new Color3(0.44, 1, 0));
+        } 
+
+        //If no item is selected, ensure no items are highlighted
+        else{
+            this.highlight.removeAllMeshes();
         }
     }
 
@@ -242,6 +275,7 @@ class Game
     private onControllerRemoved(controller : WebXRInputSource) {
         console.log("controller removed: " + controller.pointer.name);
     }
+
 }
 /******* End of the Game class ******/   
 
