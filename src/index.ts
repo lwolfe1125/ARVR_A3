@@ -15,7 +15,7 @@ import { WebXRInputSource } from "@babylonjs/core/XR/webXRInputSource";
 import "@babylonjs/loaders/glTF/2.0/glTFLoader"
 import "@babylonjs/core/Helpers/sceneHelpers";
 import "@babylonjs/inspector"
-import { CubeTexture, DebugLayer, HemisphericLight, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
+import { AssetsManager, CubeTexture, DebugLayer, HemisphericLight, MeshBuilder, SceneLoader, StandardMaterial, Texture } from "@babylonjs/core";
 import { Inspector } from "@babylonjs/inspector";
 
 
@@ -61,7 +61,7 @@ class Game
     private async createScene()
     {
         // This creates and positions a first-person camera (non-mesh)
-        var camera = new UniversalCamera("camera1", new Vector3(0, 1.6, 0), this.scene);
+        var camera = new UniversalCamera("camera1", new Vector3(0, 1.6, 20), this.scene);
         camera.fov = 90 * Math.PI / 180;
         camera.target = new Vector3(0.05, 1.61, -2);
 
@@ -101,6 +101,9 @@ class Game
         var light = new HemisphericLight("light", new Vector3(0,1,0), this.scene);
         light.diffuse = new Color3(1, 0.7, 0.7);
 
+        //Asset manager
+        var assets = new AssetsManager(this.scene);
+
         //Skybox
         var skybox = MeshBuilder.CreateBox("sky", {size: 100}, this.scene);
         skybox.scaling = new Vector3(100, 100, 100);
@@ -114,17 +117,108 @@ class Game
         skybox.infiniteDistance = true;
 
         //Ground mesh
-        SceneLoader.ImportMesh("", "textures/desert_biome/", "scene.gltf", this.scene, (meshes)=>{
-            meshes.forEach(mesh => {
-                mesh.scaling = new Vector3(60, 60, -60);
-                mesh.position = new Vector3(0, 10, 0);
-            })
-        });
+        var groundTask = assets.addMeshTask("groundTask", "", "textures/desert_biome/", "scene.gltf");
 
+        groundTask.onSuccess = (task) => {
+            var groundMesh = groundTask.loadedMeshes[0];
+            groundMesh.scaling = new Vector3(1000, 1000, 1000);
+            groundMesh.position = new Vector3(0, -158, 0);
+            groundMesh.name = "DesertBiome";
+
+            xrHelper.teleportation.addFloorMesh(groundMesh);
+        }
+
+        //House mesh 
+        var houseTask = assets.addMeshTask("houseTask", "", "textures/abandoned_house/", "scene.gltf");
+
+        houseTask.onSuccess = (task) => {
+            var houseMesh = houseTask.loadedMeshes[0];
+            houseMesh.position = new Vector3(0, -1, -5);
+            houseMesh.rotation = new Vector3(0, 4.7, 0);
+            houseMesh.scaling = new Vector3(2.5, 3, 3);
+            houseMesh.name = "house";
+        }
+
+        //Rock (and roll?)
+        var rockTask = assets.addMeshTask("rockTask", "", "textures/sandstone_mesa/", "scene.gltf");
         
+        rockTask.onSuccess = (task)=> {
+            var rockMesh = rockTask.loadedMeshes[0];
+            rockMesh.scaling = new Vector3(100, 100, 100);
+            rockMesh.rotation = new Vector3(6.1, 1.2, 0);
+            rockMesh.position = new Vector3(-50, -25, 5);
+            rockMesh.name = "rock";
+        }
 
+        //Skull (ooo spooky!)
+        var skullTask = assets.addMeshTask("skullTask", "", "textures/lion_skull/", "scene.gltf");
 
-        Inspector.Show(this.scene, {});
+        skullTask.onSuccess = (task)=>{
+            var skullMesh = skullTask.loadedMeshes[0];
+            skullMesh.scaling = new Vector3(0.01, 0.01, 0.01);
+            skullMesh.position = new Vector3(0, 0.3, 5);
+            skullMesh.rotation = new Vector3(0, 1.047, 0);
+            skullMesh.name = "skull";
+        }
+
+        //A warning sign 
+        var signTask = assets.addMeshTask("signTask", "", "textures/old_sign/", "scene.gltf");
+        
+        signTask.onSuccess = (meshes)=>{
+            var signMesh = signTask.loadedMeshes[0];
+            signMesh.scaling = new Vector3(0.5, 0.5, -0.5);
+            signMesh.position = new Vector3(-10, 0, 5);
+            signMesh.rotation = new Vector3(0, 3.49, 0);
+            signMesh.name = "sign";
+        }
+
+        //An old fence 
+        var fenceTaskA = assets.addMeshTask("fenceTaskA", "", "textures/old_fence/", "scene.gltf");
+        
+        fenceTaskA.onSuccess = (meshes)=>{
+            var fenceMeshA = fenceTaskA.loadedMeshes[0];
+            fenceMeshA.scaling = new Vector3(0.05, 0.05, 0.05);
+            fenceMeshA.position = new Vector3(30, -3, 0);
+            fenceMeshA.rotation = new Vector3(0, 1.57, 0);
+            fenceMeshA.name = "fenceA";
+        }
+
+        //More fence 
+        var fenceTaskB = assets.addMeshTask("fenceTaskB", "", "textures/old_fence/", "scene.gltf");
+        
+        fenceTaskB.onSuccess = (meshes)=>{
+            var fenceMeshB = fenceTaskB.loadedMeshes[0];
+            fenceMeshB.scaling = new Vector3(0.05, 0.05, 0.05);
+            fenceMeshB.position = new Vector3(30, -3, 23);
+            fenceMeshB.rotation = new Vector3(0, 1.57, 0);
+            fenceTaskB.loadedMeshes[0].name = "fenceB";
+        }
+
+        //A bush 
+        var bushTask = assets.addMeshTask("bushTask", "", "textures/bush/", "scene.gltf");
+
+        bushTask.onSuccess = (meshes)=>{
+            var bushMesh = bushTask.loadedMeshes[0];
+            bushMesh.position = new Vector3(10, -1, -5);
+            bushMesh.scaling = new Vector3(4, 4, 4);
+            bushMesh.name = "bush";
+        }
+
+        //A cactus
+        var cacTask = assets.addMeshTask("cacTask", "", "textures/cactus/", "scene.gltf");
+        
+        cacTask.onSuccess = (meshes)=>{
+            var cactusMesh = cacTask.loadedMeshes[0];
+            cactusMesh.position = new Vector3(15, -2, 0);
+            cactusMesh.scaling = new Vector3(5, 5, -5);
+            cactusMesh.name = "cactus";
+        }
+
+        assets.load();
+
+        assets.onFinish = (tasks) => {
+            Inspector.Show(this.scene, {});
+        }        
     }
 
     // Event handler for processing pointer selection events

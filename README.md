@@ -27,8 +27,21 @@ https://skfb.ly/oEZoo
 "Abandoned House" (https://skfb.ly/owGxR) by Sengchor is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 https://skfb.ly/owGxR 
 
-"Bone Rock Collection 1" (https://skfb.ly/oqqnL) by BigAngrySkyGames is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
-https://skfb.ly/oqqnL
+"Sandstone mesa megascan" (https://skfb.ly/oEGWz) by GoochFauxRock is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/oEGWz 
+
+"Lion Skull" (https://skfb.ly/KrEy) by Auckland Museum is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/KrEy
+
+"Cactus 2 (saguaro)" (https://skfb.ly/o9CST) by evolveduk is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/o9CST
+
+"Dry bush" (https://skfb.ly/oGqUx) by Luis Gustavo is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/oGqUx
+
+"Old fence" (https://skfb.ly/6Rq7P) by Yury Misiyuk is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/6Rq7P
+
 
 ## Rubric
 

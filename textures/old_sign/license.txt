@@ -1,0 +1,11 @@
+Model Information:
+* title:	Old rusty Sign
+* source:	https://sketchfab.com/3d-models/old-rusty-sign-b3b64871ea0647c2807baec816caabd4
+* author:	Ahmed Abu Ajamiah (https://sketchfab.com/Ahmed.Abu.Ajamiah)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Old rusty Sign" (https://sketchfab.com/3d-models/old-rusty-sign-b3b64871ea0647c2807baec816caabd4) by Ahmed Abu Ajamiah (https://sketchfab.com/Ahmed.Abu.Ajamiah) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

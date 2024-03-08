@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sandstone mesa megascan
+* source:	https://sketchfab.com/3d-models/sandstone-mesa-megascan-4dd149fe9b094675b5b4036df830665e
+* author:	GoochFauxRock (https://sketchfab.com/GoochFauxRock)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sandstone mesa megascan" (https://sketchfab.com/3d-models/sandstone-mesa-megascan-4dd149fe9b094675b5b4036df830665e) by GoochFauxRock (https://sketchfab.com/GoochFauxRock) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
