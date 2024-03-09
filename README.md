@@ -42,6 +42,8 @@ https://skfb.ly/oGqUx
 "Old fence" (https://skfb.ly/6Rq7P) by Yury Misiyuk is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 https://skfb.ly/6Rq7P
 
+"Basic Bat" (https://skfb.ly/orrzy) by Blender3D is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+https://skfb.ly/orrzy
 
 ## Rubric
 

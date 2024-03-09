@@ -34,6 +34,10 @@ class Game
     private highlightObject: AbstractMesh | null;
     private highlight : HighlightLayer;
 
+    private rightHand : WebXRInputSource | null;
+
+    private bat : AbstractMesh | null;
+
     constructor()
     {
         // Get the canvas element 
@@ -48,6 +52,10 @@ class Game
         //Highlight layer & object
         this.highlightObject = null;
         this.highlight = new HighlightLayer("highlight", this.scene);
+
+        this.rightHand = null;
+
+        this.bat = null;
     }
 
     start() : void
@@ -71,7 +79,7 @@ class Game
     private async createScene()
     {
         // This creates and positions a first-person camera (non-mesh)
-        var camera = new UniversalCamera("camera1", new Vector3(0, 1.6, 20), this.scene);
+        var camera = new UniversalCamera("camera1", new Vector3(0, 2.5, 20), this.scene);
         camera.fov = 90 * Math.PI / 180;
         camera.target = new Vector3(0.05, 1.61, -2);
 
@@ -228,6 +236,8 @@ class Game
         }
 
         assets.load();  
+
+        SceneLoader.ImportMesh("", "textures/iron_hand/", "scene.gltf", this.scene, null);
     }
 
     // Event handler for processing pointer selection events
@@ -269,6 +279,16 @@ class Game
     // Event handler when controllers are added
     private onControllerAdded(controller : WebXRInputSource) {
         console.log("controller added: " + controller.pointer.name);
+
+        if(controller.uniqueId.endsWith("right")) {
+            SceneLoader.ImportMesh("", "textures/bat/", "scene.gltf", this.scene, (meshes) => {
+                meshes[0].name = "bat";
+                meshes[0].scaling= new Vector3(0.3, 0.3, 0.3);
+                meshes[0].setParent(controller.grip!);
+                meshes[0].position = Vector3.ZeroReadOnly;
+                meshes[0].locallyTranslate(new Vector3(-0.5, 0.5, 0));
+            });  
+        }
     }
 
     // Event handler when controllers are removed

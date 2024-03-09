@@ -1,0 +1,11 @@
+Model Information:
+* title:	Basic Bat
+* source:	https://sketchfab.com/3d-models/basic-bat-79e0597f251f40fca1dcf8dd46c1c649
+* author:	Blender3D (https://sketchfab.com/Blender3D)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Basic Bat" (https://sketchfab.com/3d-models/basic-bat-79e0597f251f40fca1dcf8dd46c1c649) by Blender3D (https://sketchfab.com/Blender3D) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
